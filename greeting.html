@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Greeting</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
+            background: black;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            animation: glowingBorder 3s infinite alternate; /* Apply glowing border animation */
+        }
+
+        @keyframes glowingBorder {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 0, 0, 0.6),
+                            0 0 20px rgba(255, 255, 0, 0.6),
+                            0 0 30px rgba(0, 255, 0, 0.6),
+                            0 0 40px rgba(0, 255, 255, 0.6),
+                            0 0 50px rgba(0, 0, 255, 0.6);
+            }
+            25% {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.8),
+                            0 0 25px rgba(255, 255, 0, 0.8),
+                            0 0 35px rgba(0, 255, 0, 0.8),
+                            0 0 45px rgba(0, 255, 255, 0.8),
+                            0 0 55px rgba(0, 0, 255, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 0, 0, 1),
+                            0 0 30px rgba(255, 255, 0, 1),
+                            0 0 40px rgba(0, 255, 0, 1),
+                            0 0 50px rgba(0, 255, 255, 1),
+                            0 0 60px rgba(0, 0, 255, 1);
+            }
+            75% {
+                box-shadow: 0 0 25px rgba(255, 0, 0, 0.9),
+                            0 0 35px rgba(255, 255, 0, 0.9),
+                            0 0 45px rgba(0, 255, 0, 0.9),
+                            0 0 55px rgba(0, 255, 255, 0.9),
+                            0 0 65px rgba(0, 0, 255, 0.9);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(255, 0, 0, 1),
+                            0 0 40px rgba(255, 255, 0, 1),
+                            0 0 50px rgba(0, 255, 0, 1),
+                            0 0 60px rgba(0, 255, 255, 1),
+                            0 0 70px rgba(0, 0, 255, 1);
+            }
+        }
+
+        /* Greeting text styles */
+        #greeting {
+            font-size: clamp(2.5rem, 5vw, 5rem); /* Responsive font size */
+            color: white;
+            white-space: nowrap;
+            font-family: 'Great Vibes', cursive;
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Spacing between words */
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0.2;
+            transition: all 0.3s ease;
+            color: white;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.6), 
+                         0 0 10px rgba(255, 0, 0, 0.8), 
+                         0 0 20px rgba(255, 0, 0, 1);
+        }
+
+        .letter.active {
+            opacity: 1;
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.6),
+                         0 0 20px rgba(255, 255, 0, 0.8),
+                         0 0 30px rgba(255, 255, 0, 1);
+            animation: colorGlow 1.5s infinite alternate;
+        }
+
+        /* Color glow animation */
+        @keyframes colorGlow {
+            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000; }
+            50% { color: #ffff00; text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00; }
+            100% { color: #00ff00; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
+        }
+
+        /* Username styles */
+        #username {
+            font-size: clamp(2rem, 4vw, 3rem); /* Responsive font size */
+            font-family: 'Great Vibes', cursive;
+            color: white;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.6), 
+                         0 0 10px rgba(255, 0, 0, 0.8), 
+                         0 0 20px rgba(255, 0, 0, 1);
+            opacity: 0;
+            animation: fadeIn 1s forwards, colorGlow 1.5s infinite alternate;
+            animation-delay: 4s;
+        }
+
+        h2 {
+            font-size: clamp(1.2rem, 3vw, 2rem); /* Responsive font size */
+            margin-top: 20px;
+            color: #f39c12;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 5s;
+        }
+
+        /* Year styles */
+        #year {
+            font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive font size */
+            font-family: 'Great Vibes', cursive;
+            color: white;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.6), 
+                         0 0 10px rgba(255, 255, 0, 0.8),
+                         0 0 20px rgba(0, 255, 0, 1);
+            opacity: 0;
+            animation: fadeIn 1s forwards, colorGlow 1.5s infinite alternate;
+            animation-delay: 3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer styles */
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: clamp(1rem, 2vw, 1.2rem); /* Responsive font size */
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        .footer span {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem); /* Responsive font size */
+            color: #f9e79f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="greeting"></div>
+        <div id="username"></div>
+        <div id="year">2025</div>
+        <h2>Wishing you joy, success, and happiness!</h2>
+    </div>
+
+    <div class="footer">
+        New Year Wishes from <span>Sanjay 😊</span>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('name');
+        const greetingText = `Happy New Year`;
+
+        const greetingElement = document.getElementById('greeting');
+        greetingText.split(' ').forEach((word) => {
+            const wordSpan = document.createElement('span');
+            wordSpan.style.display = 'inline-block';
+
+            word.split('').forEach((char) => {
+                const span = document.createElement('span');
+                span.classList.add('letter');
+                span.textContent = char;
+                wordSpan.appendChild(span);
+            });
+
+            greetingElement.appendChild(wordSpan);
+        });
+
+        const letters = document.querySelectorAll('.letter');
+        let currentIndex = 0;
+        function typeGreeting() {
+            if (currentIndex < letters.length) {
+                letters[currentIndex].classList.add('active');
+                currentIndex++;
+                setTimeout(typeGreeting, 200);
+            }
+        }
+        typeGreeting();
+
+        const usernameElement = document.getElementById('username');
+        usernameElement.textContent = username || 'Friend';
+    </script>
+</body>
+</html>
